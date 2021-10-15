@@ -1,0 +1,242 @@
+{
+  "command": [
+    {
+      "name": "help",
+      "actions": [
+        {
+          "name": "help menu",
+          "category": "Message",
+          "type": "Send Embed",
+          "fields": [
+            {
+              "name": "b!help",
+              "value": "Comandos do bot",
+              "inline": "false"
+            },
+            {
+              "name": "b!info",
+              "value": "Informações do bot",
+              "inline": "true"
+            },
+            {
+              "name": "b!purge",
+              "value": "Limpa suas mensagem [test]",
+              "inline": "true"
+            }
+          ],
+          "channelname": "${dbsVars.CommandChannel.id}",
+          "color": "1FFF57",
+          "title": "PIERCERBOT Menu",
+          "url": "https://discord.gg/HBn3x5ZEfw",
+          "authorname": "PIERCER#0013",
+          "authorimageurl": "https://cdn.discordapp.com/avatars/761546557576839178/a_cb812f4c4482b263b25c1b68652f66d3.gif?size=2048",
+          "authorlink": "https://discord.gg/HBn3x5ZEfw",
+          "description": "Commands",
+          "thumbnail": "https://cdn.discordapp.com/avatars/847759804515614720/72ae0e2645c05c9b630a36bdd18c608b.png?size=2048",
+          "image": "",
+          "footer": "Dev",
+          "timestamp": "BOOL_TRUE@@",
+          "savetovariable": "",
+          "savetovariabletype": "temp"
+        }
+      ]
+    },
+    {
+      "name": "info",
+      "perms": [],
+      "actions": [
+        {
+          "name": "show info",
+          "category": "Message",
+          "type": "Send Message",
+          "channelname": "${dbsVars.DefaultChannel.id}",
+          "messagetext": "https://tenor.com/view/ulalaumenornico-gif-19358650",
+          "savetovariable": "",
+          "savetovariabletype": "temp"
+        }
+      ]
+    },
+    {
+      "name": "purge",
+      "perms": [],
+      "actions": [
+        {
+          "name": "get count",
+          "category": "Variable",
+          "type": "Store Value in Variable",
+          "varname": "purge",
+          "vartype": "Number",
+          "savevartype": "temp",
+          "param": "1"
+        },
+        {
+          "name": "purge messages",
+          "category": "Channel Action",
+          "type": "Delete All Messages",
+          "channelname": "${dbsVars.CommandChannel.id}",
+          "msgcount": "${tempVars.purge}"
+        }
+      ]
+    },
+    {
+      "name": "say",
+      "actions": [
+        {
+          "name": "say message",
+          "category": "Variable",
+          "type": "Store Value in Variable",
+          "varname": "say",
+          "vartype": "Text",
+          "savevartype": "temp",
+          "param": "0"
+        },
+        {
+          "name": "bot says message",
+          "category": "Message",
+          "type": "Send Message",
+          "channelname": "${dbsVars.CommandChannel.id}",
+          "messagetext": "${tempVars.say}",
+          "savetovariable": "",
+          "savetovariabletype": "temp"
+        }
+      ]
+    },
+    {
+      "name": "react",
+      "actions": [
+        {
+          "name": "react menu",
+          "category": "Message",
+          "type": "Send Embed",
+          "channelname": "${dbsVars.CommandChannel.id}",
+          "color": "005C37",
+          "title": "Reação Teste",
+          "url": "",
+          "authorname": "PIERCER#0013",
+          "authorimageurl": "",
+          "authorlink": "",
+          "description": "reaji ai",
+          "thumbnail": "",
+          "image": "",
+          "footer": "ulalau",
+          "timestamp": "BOOL_TRUE@@",
+          "savetovariable": "reactionmenu",
+          "savetovariabletype": "temp"
+        },
+        {
+          "name": "listener",
+          "category": "Reaction",
+          "type": "Add Reaction Listener",
+          "reactionActions": {
+            "😎": [
+              {
+                "name": "add use role",
+                "category": "User Action",
+                "type": "Add Role to User",
+                "user": "${tempVars.reactionuser.id}",
+                "rolename": "bekkiib0t @autorole"
+              },
+              {
+                "name": "role",
+                "category": "Message",
+                "type": "Send Message",
+                "channelname": "${dbsVars.CommandChannel.id}",
+                "messagetext": "você ta rilex :weed: ${tempVars.reactionemoji}",
+                "savetovariable": "",
+                "savetovariabletype": "temp"
+              }
+            ]
+          },
+          "message": "${tempVars.reactionmenu.id}",
+          "duration": "600",
+          "reactionemoji": "reactionemoji",
+          "reactionuser": "reactionuser",
+          "react": "BOOL_TRUE@@"
+        }
+      ]
+    },
+    {
+      "name": "play",
+      "actions": [
+        {
+          "name": "Store Value in Variable",
+          "category": "Variable",
+          "type": "Store Value in Variable",
+          "varname": "songVar",
+          "vartype": "Text",
+          "savevartype": "temp",
+          "param": "0"
+        },
+        {
+          "name": "VoiceManager",
+          "category": "Bot Action",
+          "type": "Voice Manager",
+          "info": "isAuthorInVC",
+          "iftrue": "2",
+          "iffalse": "9",
+          "volume": ""
+        },
+        {
+          "name": "Fetching",
+          "category": "Message",
+          "type": "Send Message",
+          "channelname": "${dbsVars.CommandChannel.id}",
+          "messagetext": "**Fetching Info....**",
+          "savetovariable": "",
+          "savetovariabletype": "temp"
+        },
+        {
+          "name": "Get_YT_Video",
+          "category": "Bot Action",
+          "type": "Get YouTube Video",
+          "searchquery": "${tempVars.songVar}",
+          "vartype": "temp",
+          "storeresult": "videoLink"
+        },
+        {
+          "name": "Play_YT_Video",
+          "category": "Bot Action",
+          "type": "Play YouTube Video",
+          "songurl": "${tempVars.songvideoLink}",
+          "vartype": "temp",
+          "storeresult": "songTitle",
+          "onsuccess": "5",
+          "onfinish": "",
+          "onerror": "7"
+        },
+        {
+          "name": "Playing...",
+          "category": "Message",
+          "type": "Send Message",
+          "channelname": "${dbsVars.CommandChannel.id}",
+          "messagetext": "**Playing... ${tempVars.songTitle}\nRequested by: ** ${dbsVars.CommandAuthor.id}",
+          "savetovariable": "",
+          "savetovariabletype": "temp"
+        },
+        {
+          "name": "Stop 1",
+          "category": "Bot Action",
+          "type": "Stop Action"
+        },
+        {
+          "name": "Invalid Info",
+          "category": "Message",
+          "type": "Send Message",
+          "channelname": "${dbsVars.CommandChannel.id}",
+          "messagetext": "**Invalid Information or URL!**",
+          "savetovariable": "",
+          "savetovariabletype": "temp"
+        },
+        {
+          "name": "VC error",
+          "category": "Message",
+          "type": "Send Message",
+          "channelname": "${dbsVars.CommandChannel.id}",
+          "messagetext": "**You are not in a Voice Channel**",
+          "savetovariable": "",
+          "savetovariabletype": "temp"
+        }
+      ]
+    }
+  ]
+}
